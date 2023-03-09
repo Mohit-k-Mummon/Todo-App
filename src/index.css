@@ -180,7 +180,6 @@ button {
     background-color: #fff;
     margin-top: 2rem;
     box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
-    min-height: 20rem;
     height: min-content;
     border-radius: 5px;
 }
@@ -194,6 +193,11 @@ button {
     align-items: center;
     padding: 1.6rem 2rem;
     font-size: 1.2rem;
+}
+
+.todo__tasks-list-item.completed {
+    text-decoration: line-through;
+    color: #d1d2da;
 }
 
 .todo__tasks-list-item .inner-container {
