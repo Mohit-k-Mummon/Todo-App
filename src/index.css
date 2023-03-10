@@ -9,6 +9,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s;
 }
 
 html {
@@ -18,7 +19,7 @@ html {
 
 body {
     min-height: 100vh;
-    background-color: #f2f2f2;
+    background-color: var(--main-background-color);
 }
 
 img, picture, video, canvas, svg {
@@ -54,6 +55,71 @@ button {
     .container {
         max-width: 54.1rem;
     }
+}
+
+/*******************
+     VARIABLES
+********************/
+:root {
+    /* LIGHT THEME VARIABLES */
+    /* Main Background Color */
+    --main-background-color: #f2f2f2;
+
+    /* Todo App Background Color */
+    --todo-background-color: #fff;
+
+    /* Text Color */
+    --text-color: #494C6B;
+
+    /* Border Color */
+    --border-color: #E3E4F1;
+
+    /* Actions Text Color */
+    --actions-text-color: #9495A5;
+    --actions-text-color-hover: #111;
+
+    /* Input Box Shadow */
+    --input-box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+
+    /* Tasks Box Shadow */
+    --tasks-box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+
+    /* Task Complete Color */
+    --task-complete: #D1D2DA;
+
+    /* Mobile Actions Container */
+    --mobile-actions-container: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+    
+}
+
+.dark {
+    /* Main Background Color */
+    --main-background-color: #171823;
+
+    /* Todo App Background Color */
+    --todo-background-color: #25273D;
+
+    /* Text Color */
+    --text-color: #C8CBE7;
+
+    /* Border Color */
+    --border-color: #393A4B;
+
+    /* Actions Text Color */
+    --actions-text-color: #5B5E7E;
+    --actions-text-color-hover: #E3E4F1;
+
+    /* Input Box Shadow */
+    --input-box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+
+    /* Tasks Box Shadow */
+    --tasks-box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+
+    /* Task Complete Color */
+    --task-complete: #4D5067;
+
+    /* Mobile Actions Container */
+    --mobile-actions-container: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -104,6 +170,7 @@ button {
 .todo__header img {
     height: 2rem;
     width: auto;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 1024px) {
@@ -123,8 +190,9 @@ button {
 /* Todo Input */
 .todo__form {
     align-items: center;
-    background-color: #fff;
+    background-color: var(--todo-background-color);
     border-radius: 5px;
+    box-shadow: var(--input-box-shadow);
     display: flex;
     gap: 1.2rem;
     height: 4.8rem;
@@ -140,6 +208,8 @@ button {
     font-family: inherit;
     outline: none;
     border: none;
+    background-color: inherit;
+    color: var(--text-color);
 }
 
 ::placeholder,
@@ -148,11 +218,19 @@ button {
 }
 
 .circle {
-    height: 2rem;
-    width: 2rem;
+    align-items: center;
     border-radius: 50%;
-    border: 1px solid #e3e4f1;
+    border: 1px solid var(--border-color);
     cursor: pointer;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+}
+
+.circle img {
+    opacity: 0;
+    transition: 0.3s;
 }
 
 .circle.iscompleted {
@@ -173,9 +251,11 @@ button {
         hsl(280deg 87% 65%) 100%
     );
     border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
+}
+
+.circle.iscompleted img {
+    opacity: 1;
 }
 
 @media screen and (min-width: 1024px) {
@@ -183,6 +263,7 @@ button {
         height: 6.4rem;
         gap: 2.4rem;
         margin-top: 4.3rem;
+        padding: 2rem 2.4rem;
     }
 
     .todo__form-input {
@@ -201,17 +282,17 @@ button {
 
 /* Todo Tasks */
 .todo__tasks {
-    background-color: #fff;
+    background-color: var(--todo-background-color);
     margin-top: 2rem;
-    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+    box-shadow: var(--tasks-box-shadow);
     height: min-content;
     border-radius: 5px;
 }
 
 .todo__tasks-list-item {
     list-style: none;
-    border-bottom: 1px solid #e3e4f1;
-    color: #494c6b;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -221,7 +302,7 @@ button {
 
 .todo__tasks-list-item.completed {
     text-decoration: line-through;
-    color: #d1d2da;
+    color: var(--task-complete);
 }
 
 .todo__tasks-list-item .inner-container {
@@ -269,7 +350,7 @@ button {
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    color: #9495A5;
+    color: var(--actions-text-color);
 }
 
 .todo__tasks-actions .items-info {
@@ -308,7 +389,7 @@ button {
     }
 
     .todo__tasks-actions .sort .sort-button:hover {
-        color: #111;
+        color: var(--actions-text-color-hover);
     }
 
     .todo__tasks-actions .sort .sort-button.active {
@@ -321,7 +402,7 @@ button {
     }
 
     .todo__tasks-actions .clear:hover {
-        color: #111;
+        color: var(--actions-text-color-hover);
     }
 }
 
@@ -333,11 +414,11 @@ button {
     padding: 1.6rem 0;
     display: flex;
     justify-content: center;
-    background-color: #fff;
+    background-color: var(--todo-background-color);
     margin-top: 1.5rem;
     border-radius: 5px;
-    color: #9495A5;
-    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+    color: var(--actions-text-color);
+    box-shadow: var(--mobile-actions-container);
 }
 
 .mobile-sort-actions .sort {
@@ -349,13 +430,13 @@ button {
 
 .mobile-sort-actions .sort .sort-button {
     font-weight: 700;
-    color: #9495A5;
+    color: var(--actions-text-color);
     transition: 0.3s;
 }
 
-.mobile-sort-actions .sort .sort-button:hover {
-    color: #111;
-}
+/* .mobile-sort-actions .sort .sort-button:hover {
+    color: var(--actions-text-color-hover);
+} */
 
 .mobile-sort-actions .sort .sort-button.active {
     color: #3a7cfd;

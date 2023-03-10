@@ -5,7 +5,7 @@ import TaskActions from './TaskActions';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTaskData } from '../features/tasks-slice';
-import { toggleInitial } from '../features/ui-slice';
+import { fetchUiData, toggleInitial } from '../features/ui-slice';
 
 const TodoTasks = () => {
 	const ui = useSelector(state => state.ui);
@@ -15,6 +15,7 @@ const TodoTasks = () => {
 	if (ui.isInitial) {
 		dispatch(toggleInitial());
 		dispatch(fetchTaskData());
+		dispatch(fetchUiData());
 	}
 
 	const tasks = useSelector(state => state.tasks);
