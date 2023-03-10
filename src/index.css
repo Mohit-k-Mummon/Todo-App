@@ -152,6 +152,30 @@ button {
     width: 2rem;
     border-radius: 50%;
     border: 1px solid #e3e4f1;
+    cursor: pointer;
+}
+
+.circle.iscompleted {
+    background-image: linear-gradient(
+        140deg,
+        hsl(192deg 100% 67%) 0%,
+        hsl(199deg 99% 67%) 8%,
+        hsl(207deg 98% 67%) 17%,
+        hsl(214deg 96% 66%) 25%,
+        hsl(221deg 95% 66%) 33%,
+        hsl(229deg 94% 66%) 42%,
+        hsl(236deg 93% 66%) 50%,
+        hsl(244deg 92% 66%) 58%,
+        hsl(251deg 91% 66%) 67%,
+        hsl(258deg 90% 65%) 75%,
+        hsl(266deg 89% 65%) 83%,
+        hsl(273deg 88% 65%) 92%,
+        hsl(280deg 87% 65%) 100%
+    );
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (min-width: 1024px) {
@@ -277,14 +301,18 @@ button {
         left: 1.8rem;
     }
 
-    .todo__tasks-actions .sort button {
+    .todo__tasks-actions .sort .sort-button {
         font-weight: 700;
         color: inherit;
         transition: 0.3s;
     }
 
-    .todo__tasks-actions .sort button:hover {
+    .todo__tasks-actions .sort .sort-button:hover {
         color: #111;
+    }
+
+    .todo__tasks-actions .sort .sort-button.active {
+        color: #3a7cfd;
     }
 
     .todo__tasks-actions .clear {
@@ -319,14 +347,18 @@ button {
     width: 16.6rem;
 }
 
-.mobile-sort-actions .sort button {
+.mobile-sort-actions .sort .sort-button {
     font-weight: 700;
-    color: inherit;
+    color: #9495A5;
     transition: 0.3s;
 }
 
-.mobile-sort-actions .sort button:hover {
+.mobile-sort-actions .sort .sort-button:hover {
     color: #111;
+}
+
+.mobile-sort-actions .sort .sort-button.active {
+    color: #3a7cfd;
 }
 
 @media screen and (min-width: 1023px) {

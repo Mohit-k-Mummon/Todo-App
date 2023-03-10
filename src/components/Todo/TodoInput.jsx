@@ -4,7 +4,6 @@ import { useRef } from 'react';
 // Redux
 import { useDispatch } from 'react-redux';
 import { addTask } from '../features/tasks-slice';
-import { toggleInitial } from '../features/ui-slice';
 
 const TodoInput = () => {
 	const taskInputRef = useRef();
@@ -12,7 +11,6 @@ const TodoInput = () => {
 
 	const onFormSubmit = e => {
 		e.preventDefault();
-		dispatch(toggleInitial());
 
 		// On Mobile this hides keyboard after submit
 		taskInputRef.current.blur();

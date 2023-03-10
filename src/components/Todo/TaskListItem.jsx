@@ -1,22 +1,39 @@
 import React from 'react';
 import crossIcon from '../../assets/icon-cross.svg';
+import checkIcon from '../../assets/icon-check.svg';
 
 // Redux
-import { removeTask } from '../features/tasks-slice';
-import { toggleInitial } from '../features/ui-slice';
+import { removeTask, toggleComplete } from '../features/tasks-slice';
 import { useDispatch } from 'react-redux';
 
 const TaskListItem = props => {
 	const dispatch = useDispatch();
-	const removeTaskHandler = () => {
-		dispatch(toggleInitial());
 
+	// Remove task function
+	const removeTaskHandler = () => {
 		dispatch(removeTask(props.id));
 	};
+
+	const toggleCompleteHandler = () => {
+		dispatch(toggleComplete(props.id));
+	};
+
+	// Task is completed state
+	const isComplete = props.isComplete;
+
+	let circle = (
+		<div
+			onClick={toggleCompleteHandler}
+			className={`circle ${isComplete ? 'iscompleted' : ''}`}
+		>
+			<img src={checkIcon} alt='' />
+		</div>
+	);
+
 	return (
-		<li className='todo__tasks-list-item'>
+		<li className={`todo__tasks-list-item ${isComplete ? 'completed' : ''}`}>
 			<div className='inner-container'>
-				<div className='circle'></div>
+				{circle}
 				<span>{props.task}</span>
 			</div>
 			<img
