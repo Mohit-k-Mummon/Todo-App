@@ -17,7 +17,7 @@ const TodoInput = () => {
 		e.preventDefault();
 
 		// On Mobile this hides keyboard after submit
-		taskInputRef.current.blur();
+		// taskInputRef.current.blur();
 
 		if (taskInputRef.current.value.trim() === '') {
 			return;
