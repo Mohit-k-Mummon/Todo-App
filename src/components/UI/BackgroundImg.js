@@ -11,10 +11,13 @@ import mobileBackgroundDark from '../../assets/bg-mobile-dark.jpg';
 import desktopBackgroundDark from '../../assets/bg-desktop-dark.jpg';
 
 const BackgroundImg = () => {
+	// Grab current ui state
 	const ui = useSelector(state => state.ui);
 
+	// Determine which banner to display
 	let mobileBackground;
 	let desktopBackground;
+
 	if (!ui.isDarkmode) {
 		mobileBackground = mobileBackgroundLight;
 		desktopBackground = desktopBackgroundLight;

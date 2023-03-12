@@ -1,27 +1,40 @@
 import React from 'react';
 import { useRef } from 'react';
 
+import checkIcon from '../../assets/icon-check.svg';
+
 // Redux
 import { useDispatch } from 'react-redux';
 import { addTask } from '../features/tasks-slice';
 
 const TodoInput = () => {
+	// Inpur ref we use to grab the input value
 	const taskInputRef = useRef();
 	const dispatch = useDispatch();
 
+	// Form submit logic
 	const onFormSubmit = e => {
 		e.preventDefault();
 
 		// On Mobile this hides keyboard after submit
 		taskInputRef.current.blur();
 
-		dispatch(addTask(taskInputRef.current.value));
+		if (taskInputRef.current.value.trim() === '') {
+			return;
+		}
+
+		// Here we dispatch our add task action with our input value
+		dispatch(addTask(taskInputRef.current.value.trim()));
+
+		// Reset the input to an empty string
 		taskInputRef.current.value = '';
 	};
 
 	return (
 		<form onSubmit={onFormSubmit} className='todo__form'>
-			<div className='circle'></div>
+			<button type='submit' className='circle-button'>
+				<img src={checkIcon} alt='' />
+			</button>
 			<label className='sr-only' htmlFor='input'>
 				Input
 			</label>

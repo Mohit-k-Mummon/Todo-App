@@ -5,11 +5,16 @@ import { useDispatch } from 'react-redux';
 import { sortTasks } from '../features/tasks-slice';
 import { useSelector } from 'react-redux';
 
+// Constant with our possible actions
 const SORT__ACTIONS = { ALL: 'All', ACTIVE: 'Active', COMPLETED: 'Completed' };
 
 const MobileSortActions = () => {
-	const taskState = useSelector(state => state.tasks);
+	// Grabbing our task state
+	const task = useSelector(state => state.tasks);
+
+	// Dispatch redux hook
 	const dispatch = useDispatch();
+
 	// Sort Functions
 	const sortByAllHandler = () => {
 		dispatch(sortTasks(SORT__ACTIONS.ALL));
@@ -20,20 +25,19 @@ const MobileSortActions = () => {
 	const sortByCompletedHandler = () => {
 		dispatch(sortTasks(SORT__ACTIONS.COMPLETED));
 	};
+
 	return (
 		<div className='mobile-sort-actions'>
 			<div className='sort'>
 				<button
-					className={`sort-button ${
-						taskState.sortBy === SORT__ACTIONS.ALL ? 'active' : ''
-					}`}
+					className={`sort-button ${task.sortBy === SORT__ACTIONS.ALL ? 'active' : ''}`}
 					onClick={sortByAllHandler}
 				>
 					All
 				</button>
 				<button
 					className={`sort-button ${
-						taskState.sortBy === SORT__ACTIONS.ACTIVE ? 'active' : ''
+						task.sortBy === SORT__ACTIONS.ACTIVE ? 'active' : ''
 					}`}
 					onClick={sortByActiveHandler}
 				>
@@ -41,7 +45,7 @@ const MobileSortActions = () => {
 				</button>
 				<button
 					className={`sort-button ${
-						taskState.sortBy === SORT__ACTIONS.COMPLETED ? 'active' : ''
+						task.sortBy === SORT__ACTIONS.COMPLETED ? 'active' : ''
 					}`}
 					onClick={sortByCompletedHandler}
 				>

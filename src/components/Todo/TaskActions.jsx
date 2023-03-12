@@ -5,14 +5,19 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearCompleted, sortTasks } from '../features/tasks-slice';
 
+// Constant with our possible actions
 const SORT__ACTIONS = { ALL: 'All', ACTIVE: 'Active', COMPLETED: 'Completed' };
 
 const TaskActions = () => {
-	// Current state
+	// Current task state
 	const tasks = useSelector(state => state.tasks);
 
+	const dispatch = useDispatch();
+
+	// This is what we display for how many items are remaining
 	const remainingTasks = tasks.tasksQuantity - tasks.countComplete;
 
+	// Determines which tense of item to use
 	let itemsString;
 	if (remainingTasks === 0 || remainingTasks > 1) {
 		itemsString = 'items';
@@ -20,7 +25,7 @@ const TaskActions = () => {
 		itemsString = 'item';
 	}
 
-	const dispatch = useDispatch();
+	// Clear completed Tasks Handler
 	const clearTasksHandler = () => {
 		dispatch(clearCompleted());
 	};

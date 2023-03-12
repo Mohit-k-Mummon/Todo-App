@@ -242,7 +242,7 @@ button {
     color: #9495a5;
 }
 
-.circle {
+.circle, .circle-button {
     align-items: center;
     border-radius: 50%;
     border: 1px solid var(--border-color);
@@ -253,8 +253,17 @@ button {
     width: 2rem;
 }
 
+.circle-button img {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.circle-button:hover img {
+    opacity: 1;
+}
+
 @media (hover:hover) {
-    .circle:hover {
+    .circle:hover, .circle-button:hover {
         border: double 1px transparent;
         background-image: linear-gradient(var(--todo-background-color), var(--todo-background-color)), linear-gradient(
             140deg,
@@ -319,7 +328,7 @@ button {
         font-size: 1.8rem;
     }
 
-    .circle {
+    .circle, .circle-button {
         height: 2.4rem;
         width: 2.4rem;
     }

@@ -9,15 +9,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../features/ui-slice';
 
 const TodoHeader = () => {
-	const dispatch = useDispatch();
+	// Grab current ui state
 	const ui = useSelector(state => state.ui);
+
+	// Redux dispatch hook
+	const dispatch = useDispatch();
 
 	// Theme toggle handler
 	const toggleThemeHandler = () => {
 		dispatch(toggleTheme());
 	};
 
-	// helper constant
+	// helper constant grabs the root of the html document
 	const documentClassList = document.documentElement.classList;
 
 	// ToggleIcon Logic
