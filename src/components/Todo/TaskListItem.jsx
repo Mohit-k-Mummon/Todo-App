@@ -3,7 +3,13 @@ import crossIcon from '../../assets/icon-cross.svg';
 import checkIcon from '../../assets/icon-check.svg';
 
 // Redux
-import { removeTask, toggleComplete } from '../features/tasks-slice';
+import {
+	removeTask,
+	toggleComplete,
+	dragTask,
+	draggedOverItem,
+	dropDraggedItem,
+} from '../features/tasks-slice';
 import { useDispatch } from 'react-redux';
 
 const TaskListItem = props => {
@@ -30,8 +36,28 @@ const TaskListItem = props => {
 		</div>
 	);
 
+	// Handler drag start
+	const onDragStart = (event, id) => {
+		dispatch(dragTask(id));
+	};
+
+	const onDragEnter = (event, id) => {
+		dispatch(draggedOverItem(id));
+	};
+
+	const onDragEnd = event => {
+		// Update array
+		dispatch(dropDraggedItem());
+	};
+
 	return (
-		<li className={`todo__tasks-list-item ${isComplete ? 'completed' : ''}`}>
+		<li
+			draggable
+			onDragStart={event => onDragStart(event, props.id)}
+			onDragEnter={event => onDragEnter(event, props.id)}
+			onDragEnd={event => onDragEnd(event)}
+			className={`todo__tasks-list-item ${isComplete ? 'completed' : ''}`}
+		>
 			<div className='inner-container'>
 				{circle}
 				<span>{props.task}</span>

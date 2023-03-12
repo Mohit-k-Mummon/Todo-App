@@ -5,6 +5,8 @@ const initialState = {
 	tasksQuantity: 1,
 	countComplete: 0,
 	sortBy: 'All',
+	draggedItem: null,
+	draggedOverItem: null,
 };
 
 const tasksSlice = createSlice({
@@ -73,10 +75,47 @@ const tasksSlice = createSlice({
 		sortTasks: (state, action) => {
 			state.sortBy = action.payload;
 		},
+
+		// Drag and Drop Methods
+		dragTask: (state, action) => {
+			// Action is going to be the dragged item's id
+			const id = action.payload;
+			const indexOfDragged = state.tasks.findIndex(task => task.id === id);
+			state.draggedItem = indexOfDragged;
+		},
+		draggedOverItem: (state, action) => {
+			// Action is going to be the dragged item's id
+			const id = action.payload;
+			const indexOfDraggedOverItem = state.tasks.findIndex(task => task.id === id);
+			state.draggedOverItem = indexOfDraggedOverItem;
+		},
+		dropDraggedItem: state => {
+			if (state.draggedItem === state.draggedOverItem) return;
+			if (state.draggedItem > state.draggedOverItem) {
+				state.tasks.splice(state.draggedOverItem, 0, state.tasks[state.draggedItem]);
+			} else {
+				state.tasks.splice(state.draggedOverItem + 1, 0, state.tasks[state.draggedItem]);
+			}
+			if (state.draggedItem > state.draggedOverItem) {
+				state.tasks.splice(state.draggedItem + 1, 1);
+			} else {
+				state.tasks.splice(state.draggedItem, 1);
+			}
+			localStorage.setItem('tasks', JSON.stringify(state.tasks));
+		},
 	},
 });
 
-export const { addTask, removeTask, fetchTaskData, toggleComplete, clearCompleted, sortTasks } =
-	tasksSlice.actions;
+export const {
+	addTask,
+	removeTask,
+	fetchTaskData,
+	toggleComplete,
+	clearCompleted,
+	sortTasks,
+	dragTask,
+	draggedOverItem,
+	dropDraggedItem,
+} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

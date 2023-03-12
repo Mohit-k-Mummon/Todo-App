@@ -336,6 +336,7 @@ button {
     box-shadow: var(--tasks-box-shadow);
     height: min-content;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .todo__tasks-list-item {
@@ -348,6 +349,8 @@ button {
     padding: 1.45rem 2rem;
     font-size: 1.2rem;
     transition: color 0.3s, text-decoration none;
+    cursor: grab;
+    background-color: var(--todo-background-color);
 }
 
 .todo__tasks-list-item.completed {
