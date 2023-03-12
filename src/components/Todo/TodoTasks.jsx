@@ -82,6 +82,7 @@ const TodoTasks = () => {
 				))} */}
 			</Reorder.Group>
 			<TaskActions />
+			<p id='drag-and-drop-tagline'>Drag and drop to reorder list</p>
 		</div>
 	);
 };

@@ -169,6 +169,7 @@ button {
 **********************/
 .todo {
     padding: 5rem 0 0;
+    position: relative;
 }
 
 
@@ -380,6 +381,17 @@ button {
     cursor: pointer;
 }
 
+#drag-and-drop-tagline {
+    color: var(--actions-text-color);
+    font-size: 1.4rem;
+    position: absolute;
+    bottom: -6rem;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+
+}
+
 @media screen and (min-width: 1024px) {
     .todo__tasks {
         margin-top: 2.4rem;
@@ -402,6 +414,10 @@ button {
 
     .todo__tasks-list-item:hover .delete-icon {
         opacity: 1;
+    }
+
+    #drag-and-drop-tagline {
+        bottom: -7.6rem;
     }
 }
 
