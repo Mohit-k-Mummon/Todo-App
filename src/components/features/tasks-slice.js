@@ -69,8 +69,13 @@ const tasksSlice = createSlice({
 			// toggle isComplete for that element
 			state.tasks[index].isComplete = !state.tasks[index].isComplete;
 
-			// Increment or decrement state.countComplete on toggle
-			state.tasks[index].isComplete ? state.countComplete++ : state.countComplete--;
+			// reduce method to keep track of how many tasks complete
+			state.countComplete = state.tasks.reduce((count, current) => {
+				if (current.isComplete) {
+					return count + 1;
+				}
+				return count;
+			}, 0);
 
 			// Update Local Storage
 			localStorage.setItem('tasks', JSON.stringify(state.tasks));
